@@ -5,17 +5,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
-import be.equality.metar.fragments.AirportsFragment
 
 
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.annotation.NonNull
 import android.support.design.widget.BottomNavigationView
-import android.view.MenuItem
+import android.support.v4.app.FragmentPagerAdapter
 import be.equality.metar.*
-import be.equality.metar.fragments.DetailsFragment
-import be.equality.metar.fragments.OldmetarsFragment
-import be.equality.metar.fragments.RawFragment
+import be.equality.metar.fragments.*
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.AndroidLogAdapter
 
@@ -28,10 +24,6 @@ class MainActivity : AppCompatActivity(), AirportsFragment.OnFragmentInteraction
 OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractionListener{
 
 
-    /**
-     * Last position which has been clicked
-     */
-    private var navPosition: BottomNavigationPosition = BottomNavigationPosition.HOME
 
     /**
      * Extension function to the FragmentManager which accepts a Lambda with Receiver as its argument, whereas the FragmentTransaction is the Receiver.
@@ -75,11 +67,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         Logger.addLogAdapter(AndroidLogAdapter())
         Logger.i("Testing")
         setSupportActionBar(toolbar_main)
-        // During initial setup, plug in the details fragment.
-        if (savedInstanceState == null) {
-            addFragment(AirportsFragment.newInstance(), R.id.framelayout_main_placeholder)
-            Logger.i("Added the fragment on initialisation")
-        }
+        
     }
 
     /**
@@ -89,10 +77,49 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onStart() {
         super.onStart()
-        bottomnavigationview_metardetail_navigation.setOnNavigationItemSelectedListener { item ->
-            navPosition = findNavigationPositionById(item.itemId)
-             switchFragment(navPosition)
+
+        bottomnavigationview_metardetail_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.navigation_item_airportlist -> {
+                    viewpager_main.currentItem = BaseFragment.AIRPORTS
+                    true
+                }
+                R.id.navigation_item_details -> {
+                    viewpager_main.currentItem = BaseFragment.DETAILS
+                    true
+                }
+                R.id.navigation_item_oldmetars -> {
+
+                    viewpager_main.currentItem = BaseFragment.OLD
+                    true
+                }
+                R.id.navigation_item_raw -> {
+                    viewpager_main.currentItem = BaseFragment.RAW
+                    true
+                }
+                else -> {
+                    viewpager_main.currentItem = BaseFragment.AIRPORTS
+                    true
+                }
+            }
         }
+
+        viewpager_main.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+            override fun getItem(p0: Int): Fragment {
+                when(p0){
+                    BaseFragment.AIRPORTS -> return AirportsFragment()
+                    BaseFragment.RAW -> return RawFragment()
+                    BaseFragment.DETAILS -> return DetailsFragment()
+                    BaseFragment.OLD -> return OldmetarsFragment()
+                }
+                return AirportsFragment()
+            }
+
+            override fun getCount(): Int {
+                return 4
+            }
+        }
+
     }
 
     /**
@@ -101,7 +128,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onStop() {
         super.onStop()
-        bottomnavigationview_metardetail_navigation.setOnNavigationItemReselectedListener { null }
+        bottomnavigationview_metardetail_navigation.setOnNavigationItemReselectedListener (null)
     }
 
     override fun showAirportMetar() {
@@ -120,30 +147,10 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    /**
-     * Finds the fragment which needs to be shown. If it exists, it replaces the current fragment.
-     * If it does not find the fragment (i.e. it has not been added before), the [BottomNavigationPosition]
-     * creates the Fragment corresponding to the selected position and replaces it.
-     *
-     * Sauce: [https://github.com/yasszu/bottom-navigation]
-     */
-    private fun switchFragment(navPosition: BottomNavigationPosition): Boolean {
-        return supportFragmentManager.findFragment(navPosition).let {
-            if (it.isAdded) return false
-            replaceFragment(it, R.id.framelayout_main_placeholder)
-            true
-        }
-    }
 
-    /**
-     * Tries to find a fragment in the fragmentmanager. If it cannot find the fragment, the
-     * [BottomNavigationPosition] creates the appropriate fragment.
-     *
-     * Sauce: [https://github.com/yasszu/bottom-navigation]
-     */
-    private fun FragmentManager.findFragment(position: BottomNavigationPosition): Fragment {
-        return findFragmentByTag(position.getTag()) ?: position.createFragment()
-    }
+
+
+
 
 
 }

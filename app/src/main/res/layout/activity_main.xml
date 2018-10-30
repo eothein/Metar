@@ -17,16 +17,15 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/framelayout_main_placeholder"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-
-    </FrameLayout>-->
-
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomnavigationview_metardetail_navigation"
@@ -37,8 +36,11 @@
         app:itemBackground="?attr/colorPrimary"
         app:itemIconTint="@drawable/selector_bottombar_item"
         app:itemTextColor="@drawable/selector_bottombar_item"
-        app:menu="@menu/navigation" />-->
+        app:menu="@menu/navigation" /><![CDATA[
+
+    -->
 
 
 
+]]>
 </android.support.design.widget.CoordinatorLayout>

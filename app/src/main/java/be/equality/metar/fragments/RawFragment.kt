@@ -21,14 +21,11 @@ import com.orhanobut.logger.Logger
  * create an instance of this fragment.
  *
  */
-class RawFragment : Fragment() {
+class RawFragment : BaseFragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +40,7 @@ class RawFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        TAG = "RAWFragment"
         Logger.i("I'm Attached")
         if (context is OnFragmentInteractionListener) {
             listener = context

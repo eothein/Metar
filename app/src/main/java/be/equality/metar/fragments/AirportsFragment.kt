@@ -18,17 +18,14 @@ import com.orhanobut.logger.Logger
  * create an instance of this fragment.
  *
  */
-class AirportsFragment : Fragment() {
+class AirportsFragment : BaseFragment() {
 
     /**
      * The listener to interact with other Activities and Fragments
      */
     private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -42,7 +39,7 @@ class AirportsFragment : Fragment() {
      */
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
+        TAG = "AirportsFragment"
         Logger.i("I'm Attached")
 
         if (context is OnFragmentInteractionListener) {
@@ -78,9 +75,6 @@ class AirportsFragment : Fragment() {
     }
 
     companion object {
-        val TAG = this::class.java.simpleName
-
-
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
