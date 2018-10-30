@@ -67,7 +67,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         Logger.addLogAdapter(AndroidLogAdapter())
         Logger.i("Testing")
         setSupportActionBar(toolbar_main)
-        
+
     }
 
     /**
