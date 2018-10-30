@@ -38,7 +38,6 @@ class OldmetarsFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         TAG = "OlMetarsFragment"
-        Logger.i("I'm Attached")
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {

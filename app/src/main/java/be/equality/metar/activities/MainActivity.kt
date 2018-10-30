@@ -7,13 +7,14 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
 
 
-import kotlinx.android.synthetic.main.activity_main.*
+
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentPagerAdapter
 import be.equality.metar.*
 import be.equality.metar.fragments.*
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.AndroidLogAdapter
+import kotlinx.android.synthetic.main.main_layout.*
 
 
 /**
@@ -63,10 +64,10 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_layout)
         Logger.addLogAdapter(AndroidLogAdapter())
         Logger.i("Testing")
-        setSupportActionBar(toolbar_main)
+        //setSupportActionBar()
 
     }
 
@@ -78,7 +79,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
     override fun onStart() {
         super.onStart()
 
-        bottomnavigationview_metardetail_navigation.setOnNavigationItemSelectedListener {
+        navigation_main.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_item_airportlist -> {
                     viewpager_main.currentItem = BaseFragment.AIRPORTS
@@ -128,7 +129,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onStop() {
         super.onStop()
-        bottomnavigationview_metardetail_navigation.setOnNavigationItemReselectedListener (null)
+        navigation_main.setOnNavigationItemReselectedListener (null)
     }
 
     override fun showAirportMetar() {

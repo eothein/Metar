@@ -41,7 +41,6 @@ class RawFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         TAG = "RAWFragment"
-        Logger.i("I'm Attached")
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
