@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentPagerAdapter
 import be.equality.metar.*
+
 import be.equality.metar.fragments.*
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.AndroidLogAdapter
@@ -79,7 +80,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
     override fun onStart() {
         super.onStart()
 
-        navigation_main.setOnNavigationItemSelectedListener {
+        navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_item_airportlist -> {
                     viewpager_main.currentItem = BaseFragment.AIRPORTS
@@ -129,7 +130,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onStop() {
         super.onStop()
-        navigation_main.setOnNavigationItemReselectedListener (null)
+        navigation.setOnNavigationItemReselectedListener (null)
     }
 
     override fun showAirportMetar() {

@@ -3,6 +3,7 @@ package be.equality.metar.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -49,8 +50,8 @@ class AirportsFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
         airports = createAirports()
-        recyclerview_airports_airportlist.adapter = SimpleItemRecyclerViewAdapter(activity as MainActivity,airports!!)
-        recyclerview_airports_airportlist.layoutManager = LinearLayoutManager(context)
+        recyclerview.adapter = SimpleItemRecyclerViewAdapter(activity as MainActivity,airports!!)
+        recyclerview.layoutManager = LinearLayoutManager(context)
     }
 
     /**
@@ -142,7 +143,8 @@ class AirportsFragment : BaseFragment() {
             holder.name.text = airport.description
             holder.thumbNail.setImageResource(R.drawable.airport)
 
-            with(holder.itemView) {
+            with(holder.thumbNail) {
+                Logger.i("Setting clicklistener")
                 tag = airport // Save the airport represented by this view
                 setOnClickListener(onClickListener)
             }
