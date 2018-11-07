@@ -125,7 +125,7 @@ class AirportsFragment : BaseFragment() {
         private val onClickListener: View.OnClickListener
 
         init {
-            onClickListener = View.OnClickListener { v ->
+            onClickListener = View.OnClickListener { _ ->
                 //val item = v.tag as Airport
                 Logger.i("Pressed an element on the Recyclerview")
             }

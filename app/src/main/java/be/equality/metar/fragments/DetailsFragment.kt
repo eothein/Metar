@@ -32,7 +32,7 @@ class DetailsFragment : BaseFragment() {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    fun onButtonPressed() {
         listener?.detailsClicked()
     }
 
@@ -75,8 +75,6 @@ class DetailsFragment : BaseFragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment DetailsFragment.
          */
         // TODO: Rename and change types and number of parameters

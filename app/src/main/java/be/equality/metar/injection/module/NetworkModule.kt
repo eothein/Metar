@@ -2,6 +2,7 @@ package be.equality.metar.injection.module
 
 import be.equality.metar.network.MetarApi
 import be.equality.metar.utils.BASE_URL
+import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
@@ -17,6 +18,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  * What is Dependency Injection? See this [video](https://www.youtube.com/watch?v=IKD2-MAkXyQ)
  * Methods annotated with @Provides  informs Dagger that this method is the constructor
  */
+@Module
 object NetworkModule {
 
 

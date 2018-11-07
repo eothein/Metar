@@ -34,7 +34,7 @@ class RawFragment : BaseFragment() {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    fun onButtonPressed() {
         listener?.rawFragmentClicker()
     }
 

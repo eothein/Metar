@@ -1,7 +1,6 @@
 package be.equality.metar.injection.component
 
 import be.equality.metar.injection.module.NetworkModule
-import be.equality.metar.model.Metar
 import be.equality.metar.ui.MetarViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -24,5 +23,13 @@ interface ViewModelInjector {
      * @param metarViewModel the [MetarViewModel] in which to inject the dependencies.
      */
     fun inject(metarViewModel: MetarViewModel)
+
+
+    @Component.Builder
+    interface Builder {
+        fun build(): ViewModelInjector
+
+        fun networkModule(networkModule: NetworkModule): Builder
+    }
 
 }
