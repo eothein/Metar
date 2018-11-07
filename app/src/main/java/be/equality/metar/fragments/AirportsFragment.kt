@@ -3,7 +3,6 @@ package be.equality.metar.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import be.equality.metar.R
 import be.equality.metar.activities.MainActivity
-import be.equality.metar.models.Airport
+import be.equality.metar.model.Airport
 import com.orhanobut.logger.Logger
 import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_airports.*
@@ -127,7 +126,7 @@ class AirportsFragment : BaseFragment() {
 
         init {
             onClickListener = View.OnClickListener { v ->
-                val item = v.tag as Airport
+                //val item = v.tag as Airport
                 Logger.i("Pressed an element on the Recyclerview")
             }
         }

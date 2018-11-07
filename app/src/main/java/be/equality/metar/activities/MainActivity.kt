@@ -22,7 +22,6 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
 
 
 
-
     /**
      * Creates this Activity.
      */

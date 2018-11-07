@@ -1,4 +1,7 @@
-package be.equality.metar.models
+package be.equality.metar.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 
 /**
@@ -8,6 +11,5 @@ package be.equality.metar.models
  * @property locationIndicator Four letter code, following the standards of ICAO and WMO
  * @property description Short description of this airport (e.g. its name)
  */
-data class Airport(val id : Int, val locationIndicator : String, val description : String ) {
-
-}
+@Parcelize
+data class Airport(val id : Int, val locationIndicator : String, val description : String ) : Parcelable

@@ -1,4 +1,8 @@
-package be.equality.metar.models
+package be.equality.metar.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 
 /**
@@ -7,6 +11,8 @@ package be.equality.metar.models
  * pre-flight weather briefing, and by meteorologists, who use aggregated METAR
  * information to assist in weather forecasting.
  *
+ *
+ * @constructor Sets all properties of the post
  * @property id The id of this metar
  * @property rawMetar The raw code of the metar
  * @property airport The airport where this Metar belongs to
@@ -17,9 +23,15 @@ package be.equality.metar.models
  * @property windSpeed Speed of the wind
  * @property gusts The possible gusts of the weather
  * @property lineOfSight The line of sight (expressed in meter)
+ *
+ * We use the Android Extensions plugin which now includes an automatic
+ * Parcelable implementation generator. Declare the serialized properties in
+ * a primary constructor and add a @Parcelize annotation, and writeToParcel()/createFromParcel()
+ * methods will be created automatically.
  */
-data class Metar(val id: Long, val rawMetar : String, val airport: Airport,
+@Parcelize
+data class Metar(val id: Long, val rawMetar : String, val airport: @RawValue Airport,
                  val dayOfMonth : Int, val time : Int, val windDirection : Int,
                  val windSpeed : Int, val gusts: Int, val lineOfSight : Int
-                 ) {
+                 ): Parcelable {
 }
