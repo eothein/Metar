@@ -29,7 +29,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
         Logger.addLogAdapter(AndroidLogAdapter())
-        Logger.i("Testing")
+
         //setSupportActionBar()
 
     }

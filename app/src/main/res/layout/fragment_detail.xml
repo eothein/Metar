@@ -1,9 +1,16 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="metarViewModel"
+            type="be.equality.metar.ui.MetarViewModel" />
+    </data>
+
+    <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:stretchColumns="*">
-
 
     <TableRow
         android:layout_width="0dp"
@@ -24,7 +31,30 @@
             android:layout_weight="1" />
 
     </TableRow>
-    <TableRow
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:text="@string/raw_code" />
+
+            <TextView
+                android:id="@+id/textview_fragmentdetail_raw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:text="@{metarViewModel.rawMetar}" />
+
+        </TableRow>
+
+
+        <TableRow
         android:layout_width="0dp"
         android:layout_height="fill_parent">
 
@@ -52,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:text="Time" />
+            android:text="@string/time" />
 
         <TextView
             android:id="@+id/textview_fragmentdetail_time"
@@ -142,3 +172,4 @@
 
 </TableLayout>
 
+</layout>

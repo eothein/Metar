@@ -1,15 +1,13 @@
 package be.equality.metar.fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import be.equality.metar.R
-import com.orhanobut.logger.Logger
+import be.equality.metar.ui.MetarViewModel
 
 
 /**
@@ -23,6 +21,16 @@ import com.orhanobut.logger.Logger
  */
 class RawFragment : BaseFragment() {
 
+
+    /**
+     * The [MetarViewModel] we will use to display the datza
+     */
+    private lateinit var viewModel: MetarViewModel
+
+
+    /**
+     * Listener we have defines to allow inter-fragment interactions.
+     */
     private var listener: OnFragmentInteractionListener? = null
 
 
@@ -30,13 +38,11 @@ class RawFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_raw2, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed() {
-        listener?.rawFragmentClicker()
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

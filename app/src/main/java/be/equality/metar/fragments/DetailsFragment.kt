@@ -1,15 +1,16 @@
 package be.equality.metar.fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.net.Uri
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import be.equality.metar.R
-import com.orhanobut.logger.Logger
+import be.equality.metar.databinding.FragmentDetailBinding
+import be.equality.metar.ui.MetarViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -25,10 +26,23 @@ class DetailsFragment : BaseFragment() {
     private var listener: OnFragmentInteractionListener? = null
 
 
+    /**
+     * The [MetarViewModel] we will use to display the data
+     */
+    private lateinit var viewModel: MetarViewModel
+
+
+    private lateinit var binding: FragmentDetailBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+        val view = binding.root
+
+        viewModel = ViewModelProviders.of(activity!!).get(MetarViewModel::class.java)
+        binding.metarViewModel = viewModel
+        binding.setLifecycleOwner(activity)
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event

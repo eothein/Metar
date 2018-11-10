@@ -1,4 +1,4 @@
-package be.equality.metar.activities
+package be.equality.metar.utils.extension
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

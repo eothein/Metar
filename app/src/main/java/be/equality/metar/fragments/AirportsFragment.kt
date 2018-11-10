@@ -9,11 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import be.equality.metar.R
 import be.equality.metar.activities.MainActivity
 import be.equality.metar.model.Airport
 import com.orhanobut.logger.Logger
-import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_airports.*
 import kotlinx.android.synthetic.main.row_layout.view.*
 
@@ -143,7 +143,6 @@ class AirportsFragment : BaseFragment() {
             holder.thumbNail.setImageResource(R.drawable.airport)
 
             with(holder.thumbNail) {
-                Logger.i("Setting clicklistener")
                 tag = airport // Save the airport represented by this view
                 setOnClickListener(onClickListener)
             }

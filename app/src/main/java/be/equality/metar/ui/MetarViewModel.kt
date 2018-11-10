@@ -3,13 +3,20 @@ package be.equality.metar.ui
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
 import be.equality.metar.base.BaseViewModel
+import be.equality.metar.model.Metar
 import be.equality.metar.network.MetarApi
+import com.orhanobut.logger.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MetarViewModel : BaseViewModel() {
+
+
+    private val rawMetar = MutableLiveData<String>()
+
+
 
     /**
      * The instance of the MetarApi class
@@ -19,7 +26,7 @@ class MetarViewModel : BaseViewModel() {
     lateinit var metarApi : MetarApi
 
     /**
-     * Indicates whether the loading fragment should be displayed.
+     * Indicates whether the loading view should be displayed.
      */
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
@@ -31,21 +38,26 @@ class MetarViewModel : BaseViewModel() {
 
     init {
         subscription = metarApi.getMetar("EBOS")
+                //we tell it to fetch the data on background by
                 .subscribeOn(Schedulers.io())
+                //we like the fetched data to be displayed on the MainTread (UI)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe{ onRetrieveMetarStart()}
                 .doOnTerminate { onRetrieveMetarFinish()}
                 .subscribe(
-                        {onRetrieveMetarSucces()},
-                        {onRetrieveMetarError()}
+                        { result -> onRetrieveMetarSucces(result) },
+                        { error -> onRetrieveMetarError(error) }
                 )
+
     }
 
-    private fun onRetrieveMetarError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun onRetrieveMetarError(error: Throwable) {
+        Logger.e(error.message!!)
     }
 
-    private fun onRetrieveMetarSucces() {
+    private fun onRetrieveMetarSucces(result: Metar) {
+        rawMetar.value = result.rawMetar
+        Logger.i(result.rawMetar)
 
     }
 
@@ -64,6 +76,13 @@ class MetarViewModel : BaseViewModel() {
         super.onCleared()
         subscription.dispose()
     }
+
+
+    fun getRawMetar(): MutableLiveData<String> {
+        return rawMetar
+    }
+
+
 
 
 }

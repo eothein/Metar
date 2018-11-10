@@ -6,4 +6,4 @@ package be.equality.metar.utils
  *
  * You can find information [here](https://avwx.rest/documentation)
  * */
-const val BASE_URL: String = "https://avwx.rest/ap"
+const val BASE_URL: String = "https://avwx.rest/"

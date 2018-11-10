@@ -10,6 +10,11 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.targetSdk
+
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "be.equality.metar"
         minSdkVersion versions.minSdk
@@ -59,10 +64,14 @@ dependencies {
 
     //OkHttp
     implementation "com.squareup.okhttp3:okhttp:$versions.okHttp"
-
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
 
     // LiveData & ViewModel
     implementation "android.arch.lifecycle:extensions:$versions.architecture"
+
+    // Data binding
+    annotationProcessor "com.android.databinding:compiler:3.1.4"
+
 
 
     // RxJava

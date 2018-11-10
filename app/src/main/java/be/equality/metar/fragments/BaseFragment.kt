@@ -1,10 +1,8 @@
 package be.equality.metar.fragments
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.orhanobut.logger.Logger
 
-open class BaseFragment() : Fragment() {
+open class BaseFragment : Fragment() {
 
 
     open var TAG : String = ""
@@ -16,9 +14,4 @@ open class BaseFragment() : Fragment() {
         val OLD = 3
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Logger.i("Created $TAG")
-
-    }
 }

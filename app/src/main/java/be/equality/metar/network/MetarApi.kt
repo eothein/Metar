@@ -14,6 +14,6 @@ interface MetarApi {
     /**
      * Get a metar from the API
      */
-    @GET("/metar/{icao}")
+    @GET("/api/metar/{icao}")
     fun getMetar(@Path("icao") icao : String): Observable<Metar>
 }

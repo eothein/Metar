@@ -1,8 +1,8 @@
 package be.equality.metar.model
 
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
 
 
 /**
@@ -30,8 +30,13 @@ import kotlinx.android.parcel.RawValue
  * methods will be created automatically.
  */
 @Parcelize
-data class Metar(val id: Long, val rawMetar : String, val airport: @RawValue Airport,
-                 val dayOfMonth : Int, val time : Int, val windDirection : Int,
-                 val windSpeed : Int, val gusts: Int, val lineOfSight : Int
-                 ): Parcelable {
-}
+class Metar(val id: Long,
+            @field:Json(name = "Raw-Report") val rawMetar: String,
+            @field:Json(name = "Station") val airport: String,
+            val dayOfMonth: Int,
+            val time: Int,
+            @field:Json(name = "Wind-Direction") val windDirection: Int,
+            @field:Json(name = "Wind-Speed") val windSpeed: Int,
+            @field:Json(name = "Wind-Gust") val gusts: String,
+            @field:Json(name = "Visibility") val lineOfSight: Int
+) : Parcelable
