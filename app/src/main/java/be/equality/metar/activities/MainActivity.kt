@@ -71,10 +71,10 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         viewpager_main.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(p0: Int): Fragment {
                 when(p0){
-                    BaseFragment.AIRPORTS -> return AirportsFragment()
-                    BaseFragment.RAW -> return RawFragment()
-                    BaseFragment.DETAILS -> return DetailsFragment()
-                    BaseFragment.OLD -> return OldmetarsFragment()
+                    BaseFragment.AIRPORTS -> return AirportsFragment.newInstance()
+                    BaseFragment.RAW -> return RawFragment.newInstance()
+                    BaseFragment.DETAILS -> return DetailsFragment.newInstance()
+                    BaseFragment.OLD -> return OldmetarsFragment.newInstance()
                 }
                 return AirportsFragment()
             }
