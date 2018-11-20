@@ -1,15 +1,12 @@
 package be.equality.metar.fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import be.equality.metar.R
-import com.orhanobut.logger.Logger
 
 
 /**
@@ -26,13 +23,11 @@ class OldmetarsFragment : BaseFragment() {
     private var listener: OnFragmentInteractionListener? = null
 
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_oldmetars, container, false)
     }
-
 
 
     override fun onAttach(context: Context) {

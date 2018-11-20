@@ -1,175 +1,206 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="metarViewModel"
             type="be.equality.metar.ui.MetarViewModel" />
     </data>
 
-    <TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="*">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
+        <TableLayout
+            android:id="@+id/table_fragmentDetail_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:stretchColumns="*"
+            app:layout_constraintBottom_toTopOf="@id/textview_fragmentdetail_loading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/aiport" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_airport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/raw_code" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_raw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="@{metarViewModel.rawMetar}" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/day_of_month" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_dayofmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/time" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/wind_direction" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_winddirection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/wind_speed" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_windspeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/gusts" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_gusts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:text="@string/sight" />
+
+                <TextView
+                    android:id="@+id/textview_fragmentdetail_sight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+
+            </TableRow>
+        </TableLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textview_fragmentdetail_loading"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:text="@string/aiport" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_airport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-
-        <TableRow
-            android:layout_width="0dp"
-            android:layout_height="fill_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_weight="1"
-                android:text="@string/raw_code" />
-
-            <TextView
-                android:id="@+id/textview_fragmentdetail_raw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_weight="1"
-                android:text="@{metarViewModel.rawMetar}" />
-
-        </TableRow>
-
-
-        <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:text="@string/day_of_month" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_dayofmonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:text="@string/time" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:text="@string/wind_direction" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_winddirection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:text="@string/wind_speed" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_windspeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_weight="1"
-            android:text="@string/gusts" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_gusts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="0dp"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:text="@string/sight" />
-
-        <TextView
-            android:id="@+id/textview_fragmentdetail_sight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_weight="1" />
-
-    </TableRow>
-
-
-</TableLayout>
-
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@string/loading"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="italic"
+            android:visibility="@{metarViewModel.loadingVisibility? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/table_fragmentDetail_details" />
+    </android.support.constraint.ConstraintLayout>
 </layout>

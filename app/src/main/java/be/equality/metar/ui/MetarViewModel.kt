@@ -1,8 +1,7 @@
 package be.equality.metar.ui
 
 import android.arch.lifecycle.MutableLiveData
-import android.view.View
-import be.equality.metar.base.BaseViewModel
+import be.equality.metar.base.InjectedViewModel
 import be.equality.metar.model.Metar
 import be.equality.metar.network.MetarApi
 import com.orhanobut.logger.Logger
@@ -11,30 +10,28 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MetarViewModel : BaseViewModel() {
+class MetarViewModel : InjectedViewModel() {
 
 
     private val rawMetar = MutableLiveData<String>()
-
-
 
     /**
      * The instance of the MetarApi class
      * to get back the results of the API
      */
     @Inject
-    lateinit var metarApi : MetarApi
+    lateinit var metarApi: MetarApi
 
     /**
      * Indicates whether the loading view should be displayed.
      */
-    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val loadingVisibility: MutableLiveData<Boolean> = MutableLiveData()
 
 
     /**
      * Represents a disposable resources
      */
-    private  var subscription: Disposable
+    private var subscription: Disposable
 
     init {
         subscription = metarApi.getMetar("EBOS")
@@ -42,8 +39,8 @@ class MetarViewModel : BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 //we like the fetched data to be displayed on the MainTread (UI)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe{ onRetrieveMetarStart()}
-                .doOnTerminate { onRetrieveMetarFinish()}
+                .doOnSubscribe { onRetrieveMetarStart() }
+                .doOnTerminate { onRetrieveMetarFinish() }
                 .subscribe(
                         { result -> onRetrieveMetarSucces(result) },
                         { error -> onRetrieveMetarError(error) }
@@ -62,15 +59,17 @@ class MetarViewModel : BaseViewModel() {
     }
 
     private fun onRetrieveMetarFinish() {
-        loadingVisibility.value = View.GONE
+        Logger.i("Finished retrieving METAR info")
+        loadingVisibility.value = false
     }
 
     private fun onRetrieveMetarStart() {
-        loadingVisibility.value = View.VISIBLE
+        Logger.i("Started retrieving METAR info")
+        loadingVisibility.value = true
     }
 
     /**
-     * Disposes the subscription when the [BaseViewModel] is no longer used.
+     * Disposes the subscription when the [InjectedViewModel] is no longer used.
      */
     override fun onCleared() {
         super.onCleared()
@@ -81,8 +80,6 @@ class MetarViewModel : BaseViewModel() {
     fun getRawMetar(): MutableLiveData<String> {
         return rawMetar
     }
-
-
 
 
 }
