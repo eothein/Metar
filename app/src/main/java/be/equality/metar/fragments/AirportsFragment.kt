@@ -49,7 +49,7 @@ class AirportsFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
         airports = createAirports()
-        recyclerview.adapter = SimpleItemRecyclerViewAdapter(activity as MainActivity,airports!!)
+        recyclerview.adapter = SimpleItemRecyclerViewAdapter(airports!!)
         recyclerview.layoutManager = LinearLayoutManager(context)
     }
 
@@ -117,18 +117,13 @@ class AirportsFragment : BaseFragment() {
      *
      ***********************************************************************************************
      */
-    class SimpleItemRecyclerViewAdapter(private val parentActivity: MainActivity,
-                                        private val airports: List<Airport>
+    class SimpleItemRecyclerViewAdapter(private val airports: List<Airport>
     ) :
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
 
-        private val onClickListener: View.OnClickListener
-
-        init {
-            onClickListener = View.OnClickListener { _ ->
-                //val item = v.tag as Airport
-                Logger.i("Pressed an element on the Recyclerview")
-            }
+        private val onClickListener: View.OnClickListener = View.OnClickListener {
+            //val item = v.tag as Airport
+            Logger.i("Pressed an element on the Recyclerview")
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

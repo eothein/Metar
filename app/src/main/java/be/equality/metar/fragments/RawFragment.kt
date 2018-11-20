@@ -40,7 +40,7 @@ class RawFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
 
-        return inflater.inflate(R.layout.fragment_raw2, container, false)
+        return inflater.inflate(R.layout.fragment_raw, container, false)
     }
 
 

@@ -8,10 +8,10 @@ open class BaseFragment : Fragment() {
     open var TAG : String = ""
 
     companion object {
-        val AIRPORTS = 0
-        val RAW = 1
-        val DETAILS = 2
-        val OLD = 3
+        const val AIRPORTS = 0
+        const val RAW = 1
+        const val DETAILS = 2
+        const val OLD = 3
     }
 
 }

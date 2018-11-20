@@ -38,24 +38,28 @@ object NetworkModule {
      * Return the Retrofit object.
      */
     @Provides
-    internal fun provideRetrofitInterface(): Retrofit {
+    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .build()
+    }
 
+    /**
+     * Returns the OkHttpClient
+     */
+    @Provides
+    internal fun provideOkHttpClient(): OkHttpClient {
         //To debug Retrofit/OkHttp we can intercept the calls and log them.
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
 
-        val client: OkHttpClient = OkHttpClient.Builder().apply {
-            this.addInterceptor(interceptor)
+        return OkHttpClient.Builder().apply {
+            addInterceptor(interceptor)
         }.build()
-
-
-        return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .build()
     }
 
 }
