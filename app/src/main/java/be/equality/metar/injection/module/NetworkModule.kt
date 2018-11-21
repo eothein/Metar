@@ -36,14 +36,23 @@ object NetworkModule {
 
     /**
      * Return the Retrofit object.
+     * To fully configure Retrofit we require a HTTP client (okHTTP),
+     * a converterFactory that can create a converter that parses JSON into model objects, and
+     * a callAdapterFactory that can create an Adapter that allows us to use RxJava
+     *  to handle async requests instead of the Calls that Retrofit provides itself.
+     *
+     * The function paramaters are interfaces, not the types of the specific kind of factories.
+     * This allows us to easily swap out different kind of factories.
      */
     @Provides
-    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit {
+    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient,
+                                          converterFactory: retrofit2.Converter.Factory,
+                                          callAdapterFactory: retrofit2.CallAdapter.Factory): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
                 .build()
     }
 
@@ -62,4 +71,23 @@ object NetworkModule {
         }.build()
     }
 
+    /**
+     * The return type specifies the Factory interface.
+     * Currently we choose to use a MoshiConverterFactory,
+     * but this choice can easily be changed without needing any further changes.
+     */
+    @Provides
+    internal fun provideJSONConverter(): retrofit2.Converter.Factory {
+        return MoshiConverterFactory.create()
+    }
+
+    /**
+     * Here the return type is the interface as well.
+     * We choose to create an RxJavaCallAdapterFactory, but changing this is easily done
+     * without requiring further changes.
+     */
+    @Provides
+    internal fun provideCallAdapterFactory(): retrofit2.CallAdapter.Factory {
+        return RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
+    }
 }

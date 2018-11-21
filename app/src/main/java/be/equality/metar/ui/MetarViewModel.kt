@@ -47,6 +47,8 @@ class MetarViewModel : InjectedViewModel() {
     }
 
     private fun onRetrieveMetarError(error: Throwable) {
+        //Currently requests fail silently, which isn't great for the user.
+        //It would be better to show a Toast, or maybe make a TextView visible with the error message.
         Logger.e(error.message!!)
     }
 
