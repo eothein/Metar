@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 class MetarViewModel : InjectedViewModel() {
 
-
     private val rawMetar = MutableLiveData<String>()
 
     /**
@@ -26,7 +25,6 @@ class MetarViewModel : InjectedViewModel() {
      * Indicates whether the loading view should be displayed.
      */
     val loadingVisibility: MutableLiveData<Boolean> = MutableLiveData()
-
 
     /**
      * Represents a disposable resources
@@ -42,7 +40,7 @@ class MetarViewModel : InjectedViewModel() {
                 .doOnSubscribe { onRetrieveMetarStart() }
                 .doOnTerminate { onRetrieveMetarFinish() }
                 .subscribe(
-                        { result -> onRetrieveMetarSucces(result) },
+                        { result -> onRetrieveMetaSuccess(result) },
                         { error -> onRetrieveMetarError(error) }
                 )
 
@@ -52,10 +50,9 @@ class MetarViewModel : InjectedViewModel() {
         Logger.e(error.message!!)
     }
 
-    private fun onRetrieveMetarSucces(result: Metar) {
+    private fun onRetrieveMetaSuccess(result: Metar) {
         rawMetar.value = result.rawMetar
         Logger.i(result.rawMetar)
-
     }
 
     private fun onRetrieveMetarFinish() {
@@ -76,10 +73,8 @@ class MetarViewModel : InjectedViewModel() {
         subscription.dispose()
     }
 
-
     fun getRawMetar(): MutableLiveData<String> {
         return rawMetar
     }
-
 
 }

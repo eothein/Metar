@@ -12,13 +12,13 @@ import be.equality.metar.R
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [OldmetarsFragment.OnFragmentInteractionListener] interface
+ * [OldMetarsFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [OldmetarsFragment.newInstance] factory method to
+ * Use the [OldMetarsFragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class OldmetarsFragment : BaseFragment() {
+class OldMetarsFragment : BaseFragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
@@ -57,7 +57,6 @@ class OldmetarsFragment : BaseFragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-
         fun oldMetarsClicked()
     }
 
@@ -68,11 +67,11 @@ class OldmetarsFragment : BaseFragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @return A new instance of fragment OldmetarsFragment.
+         * @return A new instance of fragment OldMetarsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
-                OldmetarsFragment()
+                OldMetarsFragment()
     }
 }
