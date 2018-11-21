@@ -31,5 +31,5 @@ class Metar(val id: Long,
             @field:Json(name = "Wind-Direction") val windDirection: Int,
             @field:Json(name = "Wind-Speed") val windSpeed: Int,
             @field:Json(name = "Wind-Gust") val gusts: String,
-            @field:Json(name = "Visibility") val lineOfSight: Int
+            @field:Json(name = "Visibility") val lineOfSight: String
 )
