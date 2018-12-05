@@ -1,8 +1,6 @@
 package be.equality.metar.model
 
-import android.os.Parcelable
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
 
 
 /**
@@ -24,12 +22,7 @@ import kotlinx.android.parcel.Parcelize
  * @property gusts The possible gusts of the weather
  * @property lineOfSight The line of sight (expressed in meter)
  *
- * We use the Android Extensions plugin which now includes an automatic
- * Parcelable implementation generator. Declare the serialized properties in
- * a primary constructor and add a @Parcelize annotation, and writeToParcel()/createFromParcel()
- * methods will be created automatically.
  */
-@Parcelize
 class Metar(val id: Long,
             @field:Json(name = "Raw-Report") val rawMetar: String,
             @field:Json(name = "Station") val airport: String,
@@ -38,5 +31,5 @@ class Metar(val id: Long,
             @field:Json(name = "Wind-Direction") val windDirection: Int,
             @field:Json(name = "Wind-Speed") val windSpeed: Int,
             @field:Json(name = "Wind-Gust") val gusts: String,
-            @field:Json(name = "Visibility") val lineOfSight: Int
-) : Parcelable
+            @field:Json(name = "Visibility") val lineOfSight: String
+)

@@ -4,8 +4,7 @@ import android.support.v4.app.Fragment
 
 open class BaseFragment : Fragment() {
 
-
-    open var TAG : String = ""
+    open var TAG: String = ""
 
     companion object {
         const val AIRPORTS = 0

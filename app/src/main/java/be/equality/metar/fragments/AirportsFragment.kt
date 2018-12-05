@@ -35,13 +35,12 @@ class AirportsFragment : BaseFragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     /**
-     * List containing the aiports for which a METAR can be requested.
+     * List containing the airports for which a METAR can be requested.
      */
     private var airports: List<Airport>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_airports, container, false)
     }
 
@@ -80,7 +79,6 @@ class AirportsFragment : BaseFragment() {
         super.onAttach(context)
         TAG = "AirportsFragment"
 
-
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
@@ -112,11 +110,7 @@ class AirportsFragment : BaseFragment() {
     }
 
 
-    /***********************************************************************************************
-     * Recyclerview showing the aiports
-     *
-     ***********************************************************************************************
-     */
+    //region Recyclerview showing the aiports
     class SimpleItemRecyclerViewAdapter(private val airports: List<Airport>
     ) :
             RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -151,7 +145,7 @@ class AirportsFragment : BaseFragment() {
             var thumbNail: ImageView = view.imageview_rowlayout_thumbnail
         }
     }
-
+    //endregion
 
     companion object {
         /**

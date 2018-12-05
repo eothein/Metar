@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 class MetarViewModel : InjectedViewModel() {
 
-
     private val rawMetar = MutableLiveData<String>()
 
     /**
@@ -26,7 +25,6 @@ class MetarViewModel : InjectedViewModel() {
      * Indicates whether the loading view should be displayed.
      */
     val loadingVisibility: MutableLiveData<Boolean> = MutableLiveData()
-
 
     /**
      * Represents a disposable resources
@@ -42,20 +40,21 @@ class MetarViewModel : InjectedViewModel() {
                 .doOnSubscribe { onRetrieveMetarStart() }
                 .doOnTerminate { onRetrieveMetarFinish() }
                 .subscribe(
-                        { result -> onRetrieveMetarSucces(result) },
+                        { result -> onRetrieveMetaSuccess(result) },
                         { error -> onRetrieveMetarError(error) }
                 )
 
     }
 
     private fun onRetrieveMetarError(error: Throwable) {
+        //Currently requests fail silently, which isn't great for the user.
+        //It would be better to show a Toast, or maybe make a TextView visible with the error message.
         Logger.e(error.message!!)
     }
 
-    private fun onRetrieveMetarSucces(result: Metar) {
+    private fun onRetrieveMetaSuccess(result: Metar) {
         rawMetar.value = result.rawMetar
         Logger.i(result.rawMetar)
-
     }
 
     private fun onRetrieveMetarFinish() {
@@ -76,10 +75,8 @@ class MetarViewModel : InjectedViewModel() {
         subscription.dispose()
     }
 
-
     fun getRawMetar(): MutableLiveData<String> {
         return rawMetar
     }
-
 
 }

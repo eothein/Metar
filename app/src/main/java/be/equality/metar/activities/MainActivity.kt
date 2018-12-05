@@ -17,10 +17,11 @@ import kotlinx.android.synthetic.main.main_layout.*
  * Recourse naming questions? : see [https://jeroenmols.com/blog/2016/03/07/resourcenaming/]
  */
 
-class MainActivity : AppCompatActivity(), AirportsFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener,
-OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractionListener{
-
-
+class MainActivity : AppCompatActivity(),
+        AirportsFragment.OnFragmentInteractionListener,
+        DetailsFragment.OnFragmentInteractionListener,
+        OldMetarsFragment.OnFragmentInteractionListener,
+        RawFragment.OnFragmentInteractionListener {
 
     /**
      * Creates this Activity.
@@ -29,9 +30,6 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_layout)
         Logger.addLogAdapter(AndroidLogAdapter())
-
-        //setSupportActionBar()
-
     }
 
     /**
@@ -43,7 +41,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
         super.onStart()
 
         navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.navigation_item_airportlist -> {
                     viewpager_main.currentItem = BaseFragment.AIRPORTS
                     true
@@ -70,11 +68,11 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
 
         viewpager_main.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(p0: Int): Fragment {
-                when(p0){
+                when (p0) {
                     BaseFragment.AIRPORTS -> return AirportsFragment.newInstance()
                     BaseFragment.RAW -> return RawFragment.newInstance()
                     BaseFragment.DETAILS -> return DetailsFragment.newInstance()
-                    BaseFragment.OLD -> return OldmetarsFragment.newInstance()
+                    BaseFragment.OLD -> return OldMetarsFragment.newInstance()
                 }
                 return AirportsFragment()
             }
@@ -83,7 +81,6 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
                 return 4
             }
         }
-
     }
 
     /**
@@ -92,7 +89,7 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
      */
     override fun onStop() {
         super.onStop()
-        navigation.setOnNavigationItemReselectedListener (null)
+        navigation.setOnNavigationItemReselectedListener(null)
     }
 
     override fun showAirportMetar() {
@@ -110,11 +107,6 @@ OldmetarsFragment.OnFragmentInteractionListener,RawFragment.OnFragmentInteractio
     override fun rawFragmentClicker() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-
-
-
-
 
 
 }
